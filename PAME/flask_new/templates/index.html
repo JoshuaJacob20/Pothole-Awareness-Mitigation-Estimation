@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Places</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        select {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            padding: 8px 16px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .place-details {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .place-details h2 {
+            color: #007bff;
+        }
+
+        .place-details p {
+            color: #666;
+        }
+
+        .place-details img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select a Place</h1>
+    <form action="/" method="post">
+        <select name="place_id">
+            {% for place in places %}
+                <option value="{{ place[0] }}">{{ place[1] }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="View Details">
+    </form>
+
+    {% if selected_place %}
+        <div class="place-details">
+            <h2>{{ selected_place[1] }}</h2>
+            <p>{{ selected_place[2] }}</p>
+            <img src="{{ selected_place[3] }}" width="250" height="250" alt="{{ selected_place[1] }}">
+        </div>
+    {% endif %}
+</body>
+</html>
